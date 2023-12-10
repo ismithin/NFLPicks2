@@ -16,5 +16,11 @@ namespace NFLPicks2
         {
             InitializeComponent();
         }
+
+        private void Dashboard_Load(object sender, EventArgs e)
+        {
+
+        }
+
     }
 }
