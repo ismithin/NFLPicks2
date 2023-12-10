@@ -6,7 +6,15 @@ using System.Threading.Tasks;
 
 namespace NFLPicks2
 {
-    internal class Matchups
+    public class Matchup
     {
+        public Teams TeamA { get; set; }
+        public Teams TeamB { get; set; }
+
+        public Matchup(Teams teamA, Teams teamB)
+        {
+            TeamA = teamA;
+            TeamB = teamB;
+        }
     }
 }
