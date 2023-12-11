@@ -1,25 +1,30 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace NFLPicks2
 {
     public class Weeks
     {
-        public int WeekNumber { get; }
-        public List<Matchup> Matchups { get; }
+        public int WeekNumber { get; private set; }
+        public List<Matchup> Matchups { get; private set; } = new List<Matchup>();
+
+        // Assuming you have a list to store all the weeks
+        private static List<Weeks> allWeeks = new List<Weeks>();
 
         public Weeks(int weekNumber)
         {
             WeekNumber = weekNumber;
-            Matchups = new List<Matchup>();
+            allWeeks.Add(this); // Add the current week to the list
         }
 
         public void AddMatchup(Matchup matchup)
         {
             Matchups.Add(matchup);
+        }
+
+        public static Weeks GetWeekByNumber(int weekNumber)
+        {
+            return allWeeks.FirstOrDefault(week => week.WeekNumber == weekNumber);
         }
     }
 }

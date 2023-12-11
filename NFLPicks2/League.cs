@@ -1,51 +1,46 @@
-﻿using System;
+﻿using NFLPicks2;
 using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
-namespace NFLPicks2
+public class League
 {
-    public class League
+    // Attributes
+    public string LeagueName;
+    private List<User> members = new List<User>();
+    private Dictionary<User, int> userScores = new Dictionary<User, int>();
+
+    // Constructor
+    public League(string leagueName)
     {
-        // Attributes
-        private int leagueID;
-        private string leagueName;
-        private string description;
-        private List<User> members;
-        private string rules;
+        // Initialize attributes and perform necessary setup
+        this.LeagueName = leagueName;
+    }
 
-
-        // Constructor
-        public League(string leagueName, string description, string rules)
+    // Methods
+    public void AddMember(User user)
+    {
+        if (!members.Contains(user))
         {
-            // Initialize attributes and perform necessary setup
+            members.Add(user);
+            userScores.Add(user, 0); // Initialize score for the user
         }
+    }
 
-        // Methods
-        public void CreateLeague()
-        {
-            // Implement league creation logic
-        }
+    public void RemoveMember(User user)
+    {
+        members.Remove(user);
+        userScores.Remove(user);
+    }
 
-        public void JoinLeague(User user)
-        {
-            // Implement logic for user joining the league
-        }
+    public int GetScore(User user)
+    {
+        return userScores.ContainsKey(user) ? userScores[user] : 0;
+    }
 
-        public void LeaveLeague(User user)
+    public void UpdateScore(User user, int newScore)
+    {
+        if (userScores.ContainsKey(user))
         {
-            // Implement logic for user leaving the league
-        }
-
-        public void ManageMembers()
-        {
-            // Implement logic for managing members
-        }
-
-        public void SetRules(string newRules)
-        {
-            // Implement logic for setting and updating rules
+            userScores[user] = newScore;
         }
     }
 }

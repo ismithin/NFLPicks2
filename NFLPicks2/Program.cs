@@ -75,8 +75,8 @@ namespace NFLPicks2
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);
             // Start with the login form
-            LoginForm loginForm = new LoginForm();
-            Application.Run(loginForm);
+            LoginBoard LoginBoard = new LoginBoard();
+            Application.Run(LoginBoard);
         }
     }
     #region Shuffle 

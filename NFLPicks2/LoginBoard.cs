@@ -10,40 +10,50 @@ using System.Windows.Forms;
 
 namespace NFLPicks2
 {
-    public partial class LoginForm : Form
+    public partial class LoginBoard : Form
     {
-        public LoginForm()
+        private User loggedInUser;
+        public LoginBoard()
         {
             InitializeComponent();
         }
 
-        private void loginButton_Click(object sender, EventArgs e)
+        private void LoginButton1_Click(object sender, EventArgs e)
         {
             string enteredUsername = usernameTextBox.Text;
             string enteredPassword = passwordTextBox.Text;
 
             // Perform basic validation, replace with your actual authentication logic
-            if (IsValidUser(enteredUsername, enteredPassword))
+            if (string.IsNullOrEmpty(enteredUsername))
             {
-                // If user is valid, open the main dashboard
-                Dashboard mainDashboard = new Dashboard();
+                MessageBox.Show("Please enter a username.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
+            else if (string.IsNullOrEmpty(enteredPassword))
+            {
+                MessageBox.Show("Please enter a password.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
+            else if (IsValidUser(enteredUsername, enteredPassword))
+            {
+                // If the user is valid, show the dashboard
+                loggedInUser = UserManager.Instance.GetUserByUsername(enteredUsername);
+                Dashboard mainDashboard = new Dashboard(loggedInUser);
                 mainDashboard.Show();
                 this.Hide(); // Hide the login form
             }
             else
             {
-                MessageBox.Show("Invalid username or password. Please try again.");
+                // If user is not valid (doesn't exist in userlist), add user and show dashboard
+                loggedInUser = UserManager.Instance.AddUser(enteredUsername, enteredPassword);
+                Dashboard mainDashboard = new Dashboard(loggedInUser);
+                mainDashboard.Show();
+                this.Hide(); // Hide the login form
             }
         }
 
         private bool IsValidUser(string username, string password)
         {
-            return username == "your_username" && password == "your_password";
-        }
-
-        private void NFLPicksLoginLabel_Click(object sender, EventArgs e)
-        {
-
+            List<User> allUsers = UserManager.Instance.GetUsers();
+            return allUsers.Any(user => user.Username == username && user.Password == password);
         }
     }
 }

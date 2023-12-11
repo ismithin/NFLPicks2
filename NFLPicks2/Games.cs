@@ -8,11 +8,10 @@ namespace NFLPicks2
 {
     public class Game
     {
-        public int GameID { get; set; }
         public ButtonInfo ButtonA { get; set; }
         public ButtonInfo ButtonB { get; set; }
 
-        public Game(int gameID, Matchup matchup)
+        public Game( Matchup matchup)
         {
             ButtonA = new ButtonInfo(matchup.TeamA);
             ButtonB = new ButtonInfo(matchup.TeamB);
