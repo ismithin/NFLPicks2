@@ -74,9 +74,7 @@
             this.PerformLayout();
 
         }
-
         #endregion
-
         private System.Windows.Forms.Label InstructionLabel;
         private System.Windows.Forms.TextBox LeagueNameTextBox;
         private System.Windows.Forms.Button LeagueBoardButton1;

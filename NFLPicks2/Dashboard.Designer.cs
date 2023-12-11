@@ -57,19 +57,17 @@
             this.LeagueButton2 = new System.Windows.Forms.Button();
             this.LeagueButton3 = new System.Windows.Forms.Button();
             this.LeagueButton4 = new System.Windows.Forms.Button();
-            this.WeeksListBox = new System.Windows.Forms.ListBox();
             this.LeagueNameLabel2 = new System.Windows.Forms.Label();
             this.UsernameLabel = new System.Windows.Forms.Label();
             this.LeagueStandingsGrid1 = new System.Windows.Forms.DataGridView();
             this.PicksCheckBox1 = new System.Windows.Forms.CheckBox();
             this.LeagueButtonsLabel = new System.Windows.Forms.Label();
-            this.AvatarBox1 = new System.Windows.Forms.PictureBox();
             this.LogoutButton1 = new System.Windows.Forms.Button();
             this.LeaveLeagueButton = new System.Windows.Forms.Button();
             this.JoinLeagueButton = new System.Windows.Forms.Button();
             this.CreateLeagueButton = new System.Windows.Forms.Button();
+            this.WeeksComboBox = new System.Windows.Forms.ComboBox();
             ((System.ComponentModel.ISupportInitialize)(this.LeagueStandingsGrid1)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.AvatarBox1)).BeginInit();
             this.SuspendLayout();
             // 
             // LeagueButton1
@@ -90,7 +88,6 @@
             this.GameButton1.TabIndex = 4;
             this.GameButton1.Text = "button5";
             this.GameButton1.UseVisualStyleBackColor = true;
-            this.GameButton1.Click += new System.EventHandler(this.GameButton1_Click);
             // 
             // GameButton2
             // 
@@ -100,7 +97,6 @@
             this.GameButton2.TabIndex = 5;
             this.GameButton2.Text = "button6";
             this.GameButton2.UseVisualStyleBackColor = true;
-            this.GameButton2.Click += new System.EventHandler(this.GameButton2_Click);
             // 
             // GameButton3
             // 
@@ -110,7 +106,6 @@
             this.GameButton3.TabIndex = 6;
             this.GameButton3.Text = "button7";
             this.GameButton3.UseVisualStyleBackColor = true;
-            this.GameButton3.Click += new System.EventHandler(this.GameButton3_Click);
             // 
             // GameButton4
             // 
@@ -120,7 +115,6 @@
             this.GameButton4.TabIndex = 7;
             this.GameButton4.Text = "button8";
             this.GameButton4.UseVisualStyleBackColor = true;
-            this.GameButton4.Click += new System.EventHandler(this.GameButton4_Click);
             // 
             // GameButton5
             // 
@@ -130,7 +124,6 @@
             this.GameButton5.TabIndex = 8;
             this.GameButton5.Text = "button9";
             this.GameButton5.UseVisualStyleBackColor = true;
-            this.GameButton5.Click += new System.EventHandler(this.GameButton5_Click);
             // 
             // GameButton6
             // 
@@ -140,7 +133,6 @@
             this.GameButton6.TabIndex = 9;
             this.GameButton6.Text = "button10";
             this.GameButton6.UseVisualStyleBackColor = true;
-            this.GameButton6.Click += new System.EventHandler(this.GameButton6_Click);
             // 
             // GameButton7
             // 
@@ -150,7 +142,6 @@
             this.GameButton7.TabIndex = 10;
             this.GameButton7.Text = "button11";
             this.GameButton7.UseVisualStyleBackColor = true;
-            this.GameButton7.Click += new System.EventHandler(this.GameButton7_Click);
             // 
             // GameButton8
             // 
@@ -160,7 +151,6 @@
             this.GameButton8.TabIndex = 11;
             this.GameButton8.Text = "button12";
             this.GameButton8.UseVisualStyleBackColor = true;
-            this.GameButton8.Click += new System.EventHandler(this.GameButton8_Click);
             // 
             // GameButton9
             // 
@@ -170,7 +160,6 @@
             this.GameButton9.TabIndex = 12;
             this.GameButton9.Text = "button13";
             this.GameButton9.UseVisualStyleBackColor = true;
-            this.GameButton9.Click += new System.EventHandler(this.GameButton9_Click);
             // 
             // GameButton10
             // 
@@ -180,7 +169,6 @@
             this.GameButton10.TabIndex = 13;
             this.GameButton10.Text = "button14";
             this.GameButton10.UseVisualStyleBackColor = true;
-            this.GameButton10.Click += new System.EventHandler(this.GameButton10_Click);
             // 
             // GameButton11
             // 
@@ -190,7 +178,6 @@
             this.GameButton11.TabIndex = 14;
             this.GameButton11.Text = "button15";
             this.GameButton11.UseVisualStyleBackColor = true;
-            this.GameButton11.Click += new System.EventHandler(this.GameButton11_Click);
             // 
             // GameButton12
             // 
@@ -200,7 +187,6 @@
             this.GameButton12.TabIndex = 15;
             this.GameButton12.Text = "button16";
             this.GameButton12.UseVisualStyleBackColor = true;
-            this.GameButton12.Click += new System.EventHandler(this.GameButton12_Click);
             // 
             // GameButton13
             // 
@@ -210,7 +196,6 @@
             this.GameButton13.TabIndex = 16;
             this.GameButton13.Text = "button17";
             this.GameButton13.UseVisualStyleBackColor = true;
-            this.GameButton13.Click += new System.EventHandler(this.GameButton13_Click);
             // 
             // GameButton14
             // 
@@ -220,7 +205,6 @@
             this.GameButton14.TabIndex = 17;
             this.GameButton14.Text = "button18";
             this.GameButton14.UseVisualStyleBackColor = true;
-            this.GameButton14.Click += new System.EventHandler(this.GameButton14_Click);
             // 
             // GameButton15
             // 
@@ -230,7 +214,6 @@
             this.GameButton15.TabIndex = 18;
             this.GameButton15.Text = "button19";
             this.GameButton15.UseVisualStyleBackColor = true;
-            this.GameButton15.Click += new System.EventHandler(this.GameButton15_Click);
             // 
             // GameButton16
             // 
@@ -240,7 +223,6 @@
             this.GameButton16.TabIndex = 19;
             this.GameButton16.Text = "button20";
             this.GameButton16.UseVisualStyleBackColor = true;
-            this.GameButton16.Click += new System.EventHandler(this.GameButton16_Click);
             // 
             // GameButton17
             // 
@@ -250,7 +232,6 @@
             this.GameButton17.TabIndex = 20;
             this.GameButton17.Text = "button21";
             this.GameButton17.UseVisualStyleBackColor = true;
-            this.GameButton17.Click += new System.EventHandler(this.GameButton17_Click);
             // 
             // GameButton18
             // 
@@ -260,7 +241,6 @@
             this.GameButton18.TabIndex = 21;
             this.GameButton18.Text = "button22";
             this.GameButton18.UseVisualStyleBackColor = true;
-            this.GameButton18.Click += new System.EventHandler(this.GameButton18_Click);
             // 
             // GameButton19
             // 
@@ -270,7 +250,6 @@
             this.GameButton19.TabIndex = 22;
             this.GameButton19.Text = "button23";
             this.GameButton19.UseVisualStyleBackColor = true;
-            this.GameButton19.Click += new System.EventHandler(this.GameButton19_Click);
             // 
             // GameButton20
             // 
@@ -280,7 +259,6 @@
             this.GameButton20.TabIndex = 23;
             this.GameButton20.Text = "button24";
             this.GameButton20.UseVisualStyleBackColor = true;
-            this.GameButton20.Click += new System.EventHandler(this.GameButton20_Click);
             // 
             // GameButton21
             // 
@@ -290,7 +268,6 @@
             this.GameButton21.TabIndex = 24;
             this.GameButton21.Text = "button25";
             this.GameButton21.UseVisualStyleBackColor = true;
-            this.GameButton21.Click += new System.EventHandler(this.GameButton21_Click);
             // 
             // GameButton22
             // 
@@ -300,7 +277,6 @@
             this.GameButton22.TabIndex = 25;
             this.GameButton22.Text = "button26";
             this.GameButton22.UseVisualStyleBackColor = true;
-            this.GameButton22.Click += new System.EventHandler(this.GameButton22_Click);
             // 
             // GameButton23
             // 
@@ -310,7 +286,6 @@
             this.GameButton23.TabIndex = 26;
             this.GameButton23.Text = "button27";
             this.GameButton23.UseVisualStyleBackColor = true;
-            this.GameButton23.Click += new System.EventHandler(this.GameButton23_Click);
             // 
             // GameButton24
             // 
@@ -320,7 +295,6 @@
             this.GameButton24.TabIndex = 27;
             this.GameButton24.Text = "button28";
             this.GameButton24.UseVisualStyleBackColor = true;
-            this.GameButton24.Click += new System.EventHandler(this.GameButton24_Click);
             // 
             // LeagueButton2
             // 
@@ -351,14 +325,6 @@
             this.LeagueButton4.Text = "button4";
             this.LeagueButton4.UseVisualStyleBackColor = true;
             this.LeagueButton4.Click += new System.EventHandler(this.LeagueButton4_Click);
-            // 
-            // WeeksListBox
-            // 
-            this.WeeksListBox.FormattingEnabled = true;
-            this.WeeksListBox.Location = new System.Drawing.Point(166, 9);
-            this.WeeksListBox.Name = "WeeksListBox";
-            this.WeeksListBox.Size = new System.Drawing.Size(156, 17);
-            this.WeeksListBox.TabIndex = 31;
             // 
             // LeagueNameLabel2
             // 
@@ -412,14 +378,6 @@
             this.LeagueButtonsLabel.TabIndex = 36;
             this.LeagueButtonsLabel.Text = "LeagueButtonsLabel";
             // 
-            // AvatarBox1
-            // 
-            this.AvatarBox1.Location = new System.Drawing.Point(12, 34);
-            this.AvatarBox1.Name = "AvatarBox1";
-            this.AvatarBox1.Size = new System.Drawing.Size(131, 67);
-            this.AvatarBox1.TabIndex = 37;
-            this.AvatarBox1.TabStop = false;
-            // 
             // LogoutButton1
             // 
             this.LogoutButton1.BackColor = System.Drawing.Color.DarkRed;
@@ -462,23 +420,30 @@
             this.CreateLeagueButton.UseVisualStyleBackColor = false;
             this.CreateLeagueButton.Click += new System.EventHandler(this.CreateLeagueButton_Click);
             // 
+            // WeeksComboBox
+            // 
+            this.WeeksComboBox.FormattingEnabled = true;
+            this.WeeksComboBox.Location = new System.Drawing.Point(166, 8);
+            this.WeeksComboBox.Name = "WeeksComboBox";
+            this.WeeksComboBox.Size = new System.Drawing.Size(156, 21);
+            this.WeeksComboBox.TabIndex = 42;
+            // 
             // Dashboard
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("$this.BackgroundImage")));
             this.ClientSize = new System.Drawing.Size(782, 424);
+            this.Controls.Add(this.WeeksComboBox);
             this.Controls.Add(this.CreateLeagueButton);
             this.Controls.Add(this.JoinLeagueButton);
             this.Controls.Add(this.LeaveLeagueButton);
             this.Controls.Add(this.LogoutButton1);
-            this.Controls.Add(this.AvatarBox1);
             this.Controls.Add(this.LeagueButtonsLabel);
             this.Controls.Add(this.PicksCheckBox1);
             this.Controls.Add(this.LeagueStandingsGrid1);
             this.Controls.Add(this.UsernameLabel);
             this.Controls.Add(this.LeagueNameLabel2);
-            this.Controls.Add(this.WeeksListBox);
             this.Controls.Add(this.LeagueButton4);
             this.Controls.Add(this.LeagueButton3);
             this.Controls.Add(this.LeagueButton2);
@@ -511,7 +476,6 @@
             this.Text = "NFLPicks";
             this.Load += new System.EventHandler(this.Dashboard_Load);
             ((System.ComponentModel.ISupportInitialize)(this.LeagueStandingsGrid1)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.AvatarBox1)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -547,17 +511,16 @@
         private System.Windows.Forms.Button LeagueButton2;
         private System.Windows.Forms.Button LeagueButton3;
         private System.Windows.Forms.Button LeagueButton4;
-        private System.Windows.Forms.ListBox WeeksListBox;
         private System.Windows.Forms.Label LeagueNameLabel2;
         private System.Windows.Forms.Label UsernameLabel;
         private System.Windows.Forms.DataGridView LeagueStandingsGrid1;
         private System.Windows.Forms.CheckBox PicksCheckBox1;
         private System.Windows.Forms.Label LeagueButtonsLabel;
-        private System.Windows.Forms.PictureBox AvatarBox1;
         private System.Windows.Forms.Button LogoutButton1;
         private System.Windows.Forms.Button LeaveLeagueButton;
         private System.Windows.Forms.Button JoinLeagueButton;
         private System.Windows.Forms.Button CreateLeagueButton;
+        private System.Windows.Forms.ComboBox WeeksComboBox;
     }
 }
 
