@@ -29,6 +29,7 @@
         private void InitializeComponent()
         {
             this.components = new System.ComponentModel.Container();
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(Dashboard));
             this.LeagueButton1 = new System.Windows.Forms.Button();
             this.GameButton1 = new System.Windows.Forms.Button();
             this.GameButton2 = new System.Windows.Forms.Button();
@@ -382,7 +383,7 @@
             // 
             // AvatarBox1
             // 
-            this.AvatarBox1.Location = new System.Drawing.Point(12, 42);
+            this.AvatarBox1.Location = new System.Drawing.Point(12, 34);
             this.AvatarBox1.Name = "AvatarBox1";
             this.AvatarBox1.Size = new System.Drawing.Size(131, 67);
             this.AvatarBox1.TabIndex = 37;
@@ -392,6 +393,7 @@
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
+            this.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("$this.BackgroundImage")));
             this.ClientSize = new System.Drawing.Size(782, 424);
             this.Controls.Add(this.AvatarBox1);
             this.Controls.Add(this.LeagueNameLabel);

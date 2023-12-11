@@ -1,13 +1,19 @@
 ﻿using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
 namespace NFLPicks2
 {
 	public class GamesButtons
 	{
-		public GamesButtons()
+		public int GameID { get; set; }
+		public string TeamA { get; set; }
+		public string TeamB { get; set; }
+
+		public GamesButtons(string team)
 		{
-			public int GameID { get; set; }
-			public string TeamA { get; set; }
-			public string TeamB { get; set; }
-		}
+            TeamA = team;
+        }
 	}
 }

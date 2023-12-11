@@ -9,16 +9,23 @@ namespace NFLPicks2
     public class Game
     {
         public int GameID { get; set; }
-        public GamesButtons ButtonA { get; set; }
-        public GamesButtons ButtonB { get; set; }
+        public ButtonInfo ButtonA { get; set; }
+        public ButtonInfo ButtonB { get; set; }
 
+        public Game(int gameID, Matchup matchup)
+        {
+            ButtonA = new ButtonInfo(matchup.TeamA);
+            ButtonB = new ButtonInfo(matchup.TeamB);
+        }
     }
 
-
-    public Game(int gameID, Teams teamA, Teams teamB)
+    public class ButtonInfo
     {
-        GameID = gameID;
-        ButtonA = new Button(teamA);
-        ButtonB = new Button(teamB);
+        public string Team { get; set; }
+
+        public ButtonInfo(string team)
+        {
+            Team = team;
+        }
     }
 }

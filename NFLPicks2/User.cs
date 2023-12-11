@@ -14,20 +14,20 @@ namespace NFLPicks2
         public string Password { get; set; }
         public string Email { get; set; }
         //public string Avatar { get; set; }
-    }
 
-    // Constructors
-    public User()
-    {
-        // Default constructor
-    }
+        // Constructors
+        public User()
+        {
+            // Default constructor
+        }
 
-    public User(int userID, string username, string password, string email, string avatar)
-    {
-        UserID = userID;
-        Username = username;
-        Password = password;
-        Email = email;
-        //Avatar = avatar;
+        public User(int userID, string username, string password, string email, string avatar)
+        {
+            UserID = userID;
+            Username = username;
+            Password = password;
+            Email = email;
+            //Avatar = avatar;
+        }
     }
 }

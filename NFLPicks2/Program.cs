@@ -10,41 +10,41 @@ namespace NFLPicks2
     {
 
         #region TeamInstances
-        static Teams lions = new Teams("Lions");
-        static Teams bears = new Teams("Bears");
-        static Teams vikings = new Teams("Vikings");
-        static Teams packers = new Teams("Packers");
-        static Teams cowboys = new Teams("Cowboys");
-        static Teams eagles = new Teams("Eagles");
-        static Teams commanders = new Teams("Commanders");
-        static Teams giants = new Teams("Giants");
-        static Teams buccaneers = new Teams("Buccaneers");
-        static Teams falcons = new Teams("Falcons");
-        static Teams panthers = new Teams("Panthers");
-        static Teams saints = new Teams("Saints");
-        static Teams rams = new Teams("Rams");
-        static Teams seahawks = new Teams("Seahawks");
-        static Teams cardinals = new Teams("Cardinals");
-        static Teams niners = new Teams("49ers");
-        static Teams chiefs = new Teams("Chiefs");
-        static Teams chargers = new Teams("Chargers");
-        static Teams broncos = new Teams("Broncos");
-        static Teams raiders = new Teams("Raiders");
-        static Teams patriots = new Teams("Patriots");
-        static Teams jets = new Teams("Jets");
-        static Teams dolphins = new Teams("Dolphins");
-        static Teams bills = new Teams("Bills");
-        static Teams steelers = new Teams("Steelers");
-        static Teams ravens = new Teams("Ravens");
-        static Teams bengals = new Teams("Bengals");
-        static Teams browns = new Teams("Browns");
-        static Teams texans = new Teams("Texans");
-        static Teams colts = new Teams("Colts");
-        static Teams titans = new Teams("Titans");
-        static Teams jaguars = new Teams("Jaguars");
+        static string lions =  ("Lions");
+        static string bears =  ("Bears");
+        static string vikings =  ("Vikings");
+        static string packers =  ("Packers");
+        static string cowboys =  ("Cowboys");
+        static string eagles =  ("Eagles");
+        static string commanders =  ("Commanders");
+        static string giants =  ("Giants");
+        static string buccaneers =  ("Buccaneers");
+        static string falcons =  ("Falcons");
+        static string panthers =  ("Panthers");
+        static string saints =  ("Saints");
+        static string rams =  ("Rams");
+        static string seahawks =  ("Seahawks");
+        static string cardinals =  ("Cardinals");
+        static string niners =  ("49ers");
+        static string chiefs =  ("Chiefs");
+        static string chargers =  ("Chargers");
+        static string broncos =  ("Broncos");
+        static string raiders =  ("Raiders");
+        static string patriots =  ("Patriots");
+        static string jets =  ("Jets");
+        static string dolphins =  ("Dolphins");
+        static string bills =  ("Bills");
+        static string steelers =  ("Steelers");
+        static string ravens =  ("Ravens");
+        static string bengals =  ("Bengals");
+        static string browns =  ("Browns");
+        static string texans =  ("Texans");
+        static string colts =  ("Colts");
+        static string titans =  ("Titans");
+        static string jaguars =  ("Jaguars");
         #endregion
 
-        static List<Teams> allTeams = new List<Teams>
+        static List<string> allstring = new List<string>
         {
             lions, bears, vikings, packers, cowboys, eagles, commanders, giants, buccaneers, falcons, panthers, saints, rams, seahawks, cardinals, niners, chiefs, chargers, broncos, raiders, patriots, jets, dolphins, bills, steelers, ravens, bengals, browns, texans, colts, titans, jaguars
         };
@@ -60,21 +60,23 @@ namespace NFLPicks2
             {
                 Weeks week = new Weeks(weekNumber);
 
-                // Shuffle teams to create random matchups
-                List<Teams> shuffledTeams = new List<Teams>(allTeams);
-                shuffledTeams.Shuffle(); // Implement a shuffle extension method
+                // Shuffle string to create random matchups
+                List<string> shuffledstring = new List<string>(allstring);
+                shuffledstring.Shuffle(); // Implement a shuffle extension method
 
                 // Generate matchups for the week
-                for (int i = 0; i < shuffledTeams.Count; i += 2)
+                for (int i = 0; i < shuffledstring.Count; i += 2)
                 {
-                    Matchup matchup = new Matchup(shuffledTeams[i], shuffledTeams[i + 1]);
+                    Matchup matchup = new Matchup(shuffledstring[i], shuffledstring[i + 1]);
                     week.AddMatchup(matchup);
                 }
             }
 
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);
-            Application.Run(new Dashboard());
+            // Start with the login form
+            LoginForm loginForm = new LoginForm();
+            Application.Run(loginForm);
         }
     }
     #region Shuffle 

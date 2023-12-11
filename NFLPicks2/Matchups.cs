@@ -8,10 +8,10 @@ namespace NFLPicks2
 {
     public class Matchup
     {
-        public Teams TeamA { get; set; }
-        public Teams TeamB { get; set; }
+        public string TeamA { get; set; }
+        public string TeamB { get; set; }
 
-        public Matchup(Teams teamA, Teams teamB)
+        public Matchup(string teamA, string teamB)
         {
             TeamA = teamA;
             TeamB = teamB;

@@ -14,32 +14,38 @@ namespace NFLPicks2
         private string description;
         private List<User> members;
         private string rules;
-    }
 
-    // Constructor
-    public League(string leagueName, string description, string rules)
-    {
-        // Initialize attributes and perform necessary setup
-    }
 
-    // Methods
-    public void CreateLeague()
-    {
-        // Implement league creation logic
-    }
+        // Constructor
+        public League(string leagueName, string description, string rules)
+        {
+            // Initialize attributes and perform necessary setup
+        }
 
-    public void JoinLeague(User user)
-    {
-        // Implement logic for user joining the league
-    }
+        // Methods
+        public void CreateLeague()
+        {
+            // Implement league creation logic
+        }
 
-    public void ManageMembers()
-    {
-        // Implement logic for managing members
-    }
+        public void JoinLeague(User user)
+        {
+            // Implement logic for user joining the league
+        }
 
-    public void SetRules(string newRules)
-    {
-        // Implement logic for setting and updating rules
+        public void LeaveLeague(User user)
+        {
+            // Implement logic for user leaving the league
+        }
+
+        public void ManageMembers()
+        {
+            // Implement logic for managing members
+        }
+
+        public void SetRules(string newRules)
+        {
+            // Implement logic for setting and updating rules
+        }
     }
 }
