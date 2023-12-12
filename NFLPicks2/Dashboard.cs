@@ -16,7 +16,6 @@ namespace NFLPicks2
         private League currentLeague; // Add a field to store the current league
         private List<Button> leagueButtons; // Maintain a list of league buttons
         private List<Button> gameButtons; // Add this list to store Game buttons
-        private WinnerSelection winnerSelection = new WinnerSelection();
 
         public Dashboard(User user) 
         {
@@ -107,6 +106,7 @@ namespace NFLPicks2
             // and perform the necessary actions.
             currentLeague = currentUser.Leagues.FirstOrDefault(league => league.LeagueName == button.Text);
             UpdateLeagueNameLabel();
+            ResetButtonColors();
             UpdateLeagueButtons();
         }
         private void UpdateLeagueButtons()
@@ -120,7 +120,7 @@ namespace NFLPicks2
                     leagueButtons[i].Text = currentUser.Leagues[i].LeagueName;
 
                     // Highlight the button if it corresponds to the current league
-                    leagueButtons[i].BackColor = (currentUser.Leagues[i] == currentLeague) ? Color.LightBlue : Color.Transparent;
+                    leagueButtons[i].BackColor = (currentUser.Leagues[i] == currentLeague) ? Color.LightGreen : Color.Transparent;
 
                     // Make the button visible
                     leagueButtons[i].Visible = true;
@@ -191,7 +191,6 @@ namespace NFLPicks2
             UpdateLeagueButtons();
             UpdateLeagueNameLabel();
         }
-
         private void JoinLeagueButton_Click(object sender, EventArgs e)
         {
             // Prompt the user for the league name they want to join using the LeagueBoard
@@ -262,6 +261,7 @@ namespace NFLPicks2
         {
             // Load the matchup buttons for the selected week
             LoadMatchupButtons(GetSelectedWeekNumber());
+            ResetButtonColors();
         }
         private void PopulateWeeksComboBox()
         {
@@ -326,14 +326,53 @@ namespace NFLPicks2
                 int buttonNumber = (int)clickedButton.Tag;
 
                 // Assuming buttonNumber corresponds to a matchup number
-                int matchupNumber = (buttonNumber + 1) / 2;  // Convert buttonNumber to matchupNumber
+                int currentMatchupNumber = (buttonNumber + 1) / 2;  // Convert buttonNumber to matchupNumber
 
                 // Get the selected team from the user
-                string selectedTeam = gameButtons[buttonNumber-1].Text;
+                string selectedTeam = gameButtons[buttonNumber - 1].Text;
 
-                // Save the selected team for the specific matchup in the current week
-                winnerSelection.SelectTeam( GetSelectedWeekNumber() ,matchupNumber, selectedTeam);
+                // Save the selected team for the specific matchup in the current week for the current league
+                currentUser.WinnerSelections[currentLeague].SelectTeam(GetSelectedWeekNumber(), currentMatchupNumber, selectedTeam);
 
+                // Highlight the selected button and unhighlight the other button in the same matchup
+                HighlightSelectedButton(currentMatchupNumber, clickedButton);
+
+                // If PicksCheckBox1 is checked, select the team for every league
+                if (PicksCheckBox1.Checked)
+                {
+                    foreach (League league in currentUser.Leagues)
+                    {
+                        // Call the WinnerSelection class to store the selected team for this league
+                        currentUser.WinnerSelections[league].SelectTeam(GetSelectedWeekNumber(), currentMatchupNumber, selectedTeam);
+                    }
+                }
+            }
+        }
+        public void ResetButtonColors()
+        {
+            foreach (Button button in gameButtons)
+            {
+                // Get the button's matchup number from the Tag property
+                if (button.Tag is int buttonNumber)
+                {
+                    int matchupNumber = (buttonNumber + 1) / 2;  // Convert buttonNumber to matchupNumber
+
+                    // Get the selected team for this matchup in the currently selected league
+                    string selectedTeam = currentUser.WinnerSelections[currentLeague].GetSelectedTeam(GetSelectedWeekNumber(), matchupNumber);
+
+                    // Set the button color based on the selected team
+                    button.BackColor = (button.Text == selectedTeam) ? Color.LightGreen : Color.Transparent;
+                }
+            }
+        }
+        private void HighlightSelectedButton(int matchupNumber, Button selectedButton)
+        {
+            // Iterate through the buttons for the same matchup
+            for (int i = (matchupNumber - 1) * 2; i < matchupNumber * 2; i++)
+            {
+                Button button = gameButtons[i];
+                // Highlight the selected button, unhighlight others
+                button.BackColor = (button == selectedButton) ? Color.LightGreen : Color.Transparent;
             }
         }
         #endregion

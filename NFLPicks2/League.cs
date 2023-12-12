@@ -1,46 +1,53 @@
-﻿using NFLPicks2;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
+using System.Linq;
 
-public class League
+namespace NFLPicks2
 {
-    // Attributes
-    public string LeagueName;
-    private List<User> members = new List<User>();
-    private Dictionary<User, int> userScores = new Dictionary<User, int>();
-
-    // Constructor
-    public League(string leagueName)
+    public class League
     {
-        // Initialize attributes and perform necessary setup
-        this.LeagueName = leagueName;
-    }
+        public string LeagueName { get; private set; }
+        private List<LeagueMember> members = new List<LeagueMember>();
 
-    // Methods
-    public void AddMember(User user)
-    {
-        if (!members.Contains(user))
+        public League(string leagueName)
         {
-            members.Add(user);
-            userScores.Add(user, 0); // Initialize score for the user
+            this.LeagueName = leagueName;
         }
-    }
 
-    public void RemoveMember(User user)
-    {
-        members.Remove(user);
-        userScores.Remove(user);
-    }
-
-    public int GetScore(User user)
-    {
-        return userScores.ContainsKey(user) ? userScores[user] : 0;
-    }
-
-    public void UpdateScore(User user, int newScore)
-    {
-        if (userScores.ContainsKey(user))
+        public void AddMember(User user)
         {
-            userScores[user] = newScore;
+            if (!members.Any(member => member.Username == user.Username))
+            {
+                members.Add(new LeagueMember { Username = user.Username, Score = 0 });
+            }
+        }
+
+        public void RemoveMember(User user)
+        {
+            var memberToRemove = members.FirstOrDefault(member => member.Username == user.Username);
+            if (memberToRemove != null)
+            {
+                members.Remove(memberToRemove);
+            }
+        }
+
+        public int GetScore(User user)
+        {
+            var member = members.FirstOrDefault(m => m.Username == user.Username);
+            return member != null ? member.Score : 0;
+        }
+
+        public void UpdateScore(User user, int newScore)
+        {
+            var member = members.FirstOrDefault(m => m.Username == user.Username);
+            if (member != null)
+            {
+                member.Score = newScore;
+            }
+        }
+
+        public List<LeagueMember> GetMembers()
+        {
+            return members.ToList();
         }
     }
 }

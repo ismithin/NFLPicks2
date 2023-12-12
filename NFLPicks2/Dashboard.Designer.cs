@@ -28,7 +28,6 @@
         /// </summary>
         private void InitializeComponent()
         {
-            this.components = new System.ComponentModel.Container();
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(Dashboard));
             this.LeagueButton1 = new System.Windows.Forms.Button();
             this.GameButton1 = new System.Windows.Forms.Button();
@@ -61,6 +60,7 @@
             this.LeagueNameLabel2 = new System.Windows.Forms.Label();
             this.UsernameLabel = new System.Windows.Forms.Label();
             this.LeagueStandingsGrid1 = new System.Windows.Forms.DataGridView();
+            this.Score = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.PicksCheckBox1 = new System.Windows.Forms.CheckBox();
             this.LeagueButtonsLabel = new System.Windows.Forms.Label();
             this.LogoutButton1 = new System.Windows.Forms.Button();
@@ -68,12 +68,7 @@
             this.JoinLeagueButton = new System.Windows.Forms.Button();
             this.CreateLeagueButton = new System.Windows.Forms.Button();
             this.WeeksComboBox = new System.Windows.Forms.ComboBox();
-            this.Score = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.userBindingSource = new System.Windows.Forms.BindingSource(this.components);
-            this.leagueBindingSource = new System.Windows.Forms.BindingSource(this.components);
             ((System.ComponentModel.ISupportInitialize)(this.LeagueStandingsGrid1)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.userBindingSource)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.leagueBindingSource)).BeginInit();
             this.SuspendLayout();
             // 
             // LeagueButton1
@@ -356,15 +351,20 @@
             // 
             // LeagueStandingsGrid1
             // 
-            this.LeagueStandingsGrid1.AutoGenerateColumns = false;
+            this.LeagueStandingsGrid1.AllowUserToOrderColumns = true;
             this.LeagueStandingsGrid1.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.LeagueStandingsGrid1.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
             this.Score});
-            this.LeagueStandingsGrid1.DataSource = this.leagueBindingSource;
             this.LeagueStandingsGrid1.Location = new System.Drawing.Point(328, 34);
             this.LeagueStandingsGrid1.Name = "LeagueStandingsGrid1";
             this.LeagueStandingsGrid1.Size = new System.Drawing.Size(295, 365);
             this.LeagueStandingsGrid1.TabIndex = 34;
+            // 
+            // Score
+            // 
+            this.Score.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
+            this.Score.HeaderText = "Score";
+            this.Score.Name = "Score";
             // 
             // PicksCheckBox1
             // 
@@ -440,19 +440,6 @@
             this.WeeksComboBox.Size = new System.Drawing.Size(156, 21);
             this.WeeksComboBox.TabIndex = 42;
             // 
-            // Score
-            // 
-            this.Score.HeaderText = "Score";
-            this.Score.Name = "Score";
-            // 
-            // userBindingSource
-            // 
-            this.userBindingSource.DataSource = typeof(NFLPicks2.User);
-            // 
-            // leagueBindingSource
-            // 
-            this.leagueBindingSource.DataSource = typeof(League);
-            // 
             // Dashboard
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -498,11 +485,10 @@
             this.Controls.Add(this.GameButton1);
             this.Controls.Add(this.LeagueButton1);
             this.Name = "Dashboard";
+            this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "NFLPicks";
             this.Load += new System.EventHandler(this.Dashboard_Load);
             ((System.ComponentModel.ISupportInitialize)(this.LeagueStandingsGrid1)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.userBindingSource)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.leagueBindingSource)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -549,8 +535,6 @@
         private System.Windows.Forms.Button CreateLeagueButton;
         private System.Windows.Forms.ComboBox WeeksComboBox;
         private System.Windows.Forms.DataGridViewTextBoxColumn Score;
-        private System.Windows.Forms.BindingSource leagueBindingSource;
-        private System.Windows.Forms.BindingSource userBindingSource;
     }
 }
 

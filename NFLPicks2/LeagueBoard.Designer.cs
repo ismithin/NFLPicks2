@@ -69,6 +69,7 @@
             this.Controls.Add(this.LeagueNameTextBox);
             this.Controls.Add(this.InstructionLabel);
             this.Name = "LeagueBoard";
+            this.StartPosition = System.Windows.Forms.FormStartPosition.CenterParent;
             this.Text = "LeagueBoard";
             this.ResumeLayout(false);
             this.PerformLayout();

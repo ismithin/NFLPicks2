@@ -41,6 +41,8 @@ namespace NFLPicks2
                 // Add the league to the existing leagues
                 LeagueManager.AddLeague(LeagueName);
             }
+            currentUser.IsLeagueAdmin = true;
+
 
             // Close the form
             Close();
