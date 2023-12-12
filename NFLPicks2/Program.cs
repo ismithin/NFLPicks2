@@ -70,6 +70,7 @@ namespace NFLPicks2
                     Matchup matchup = new Matchup(shuffledstring[i], shuffledstring[i + 1]);
                     week.AddMatchup(matchup);
                 }
+
             }
 
             Application.EnableVisualStyles();

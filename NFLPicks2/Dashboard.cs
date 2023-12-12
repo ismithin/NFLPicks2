@@ -12,11 +12,11 @@ namespace NFLPicks2
 {
     public partial class Dashboard : Form
     {
-        private User currentUser;
+        private readonly User currentUser;
         private League currentLeague; // Add a field to store the current league
         private List<Button> leagueButtons; // Maintain a list of league buttons
         private List<Button> gameButtons; // Add this list to store Game buttons
-        private static List<Weeks> allWeeks = new List<Weeks>();
+        private WinnerSelection winnerSelection = new WinnerSelection();
 
         public Dashboard(User user) 
         {
@@ -29,7 +29,6 @@ namespace NFLPicks2
             LeagueNameLabel2.Text = "League Name";//Set label to currently selected league
             // Initialize the list of league buttons
             leagueButtons = new List<Button> { LeagueButton1, LeagueButton2, LeagueButton3, LeagueButton4 };
-
             gameButtons = new List<Button>
             {
             GameButton1, GameButton2, GameButton3, GameButton4, GameButton5,
@@ -38,16 +37,17 @@ namespace NFLPicks2
             GameButton16, GameButton17, GameButton18, GameButton19, GameButton20,
             GameButton21, GameButton22, GameButton23, GameButton24
             };
+            // Initialize game buttons
             InitializeGameButtons();
 
             // Load user's leagues into buttons
             SetupLeagueButtons();
+
             // Attach the event handler for the SelectedIndexChanged event of your dropdown
             WeeksComboBox.SelectedIndexChanged += WeeksComboBox_SelectedIndexChanged;
-            // Populate the WeeksComboBox with week numbers or objects containing week information
+
             PopulateWeeksComboBox();
 
-            // Load the initial matchup buttons for the default week
             LoadMatchupButtons(GetSelectedWeekNumber());
         }
 
@@ -59,12 +59,10 @@ namespace NFLPicks2
         {
             // Close the current dashboard form
             this.Close();
-
             // Show the login form
             LoginBoard loginForm = new LoginBoard();
             loginForm.Show();
         }
-
 
         #region Update Objects
         private void UpdateUsernameLabel(User currentUser)
@@ -74,36 +72,6 @@ namespace NFLPicks2
         private void UpdateLeagueNameLabel()
         {
             LeagueNameLabel2.Text = currentLeague?.LeagueName ?? "League Name";
-        }
-        private void WeeksComboBox_SelectedIndexChanged(object sender, EventArgs e)
-        {
-            // Load the matchup buttons for the selected week
-            LoadMatchupButtons(GetSelectedWeekNumber());
-        }
-        private void PopulateWeeksComboBox()
-        {
-            // Set the DataSource property to your list of weeks
-            WeeksComboBox.DataSource = allWeeks;
-
-            // Set the DisplayMember to the property you want to display in the combo box
-            WeeksComboBox.DisplayMember = "WeekNumber";
-        }
-        private int GetSelectedWeekNumber()
-        {
-            // Check if any item is selected
-            if (WeeksComboBox.SelectedItem != null)
-            {
-                // Assuming your dropdown is bound to week numbers
-                return (int)WeeksComboBox.SelectedItem;
-            }
-
-            // If no item is selected, return a default value (e.g., week 1)
-            return 1;
-        }
-        private Weeks GetWeekByNumber(int weekNumber)
-        {
-            // Assuming you have a List<Weeks> to store all the weeks
-            return allWeeks.FirstOrDefault(week => week.WeekNumber == weekNumber);
         }
         #endregion
 
@@ -188,6 +156,7 @@ namespace NFLPicks2
             {
                 leagueButtons[i].Visible = false;
             }
+            UpdateLeagueButtons();
         }
         private void CreateLeagueButton_Click(object sender, EventArgs e)
         {
@@ -196,18 +165,15 @@ namespace NFLPicks2
                 // Prompt the user for a new league name using the LeagueBoard
                 using (var leagueBoard = new LeagueBoard("Enter the name for the new league:", currentUser))
                 {
-                    FormClosedEventHandler closedHandler = null;
-                    closedHandler = (s, args) =>
+                    void closedHandler(object s, FormClosedEventArgs args)
                     {
                         // Unsubscribe from the event to avoid multiple updates
                         leagueBoard.FormClosed -= closedHandler;
 
                         // Update league buttons
-                        UpdateLeagueButtons();
-                    };
+                    }
 
                     leagueBoard.FormClosed += closedHandler;
-
                     if (leagueBoard.ShowDialog() == DialogResult.OK)
                     {
                         // User clicked ConfirmButton in LeagueBoard
@@ -221,7 +187,11 @@ namespace NFLPicks2
             {
                 MessageBox.Show($"An error occurred: {ex.Message}", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
+            currentLeague = currentUser.Leagues.FirstOrDefault();
+            UpdateLeagueButtons();
+            UpdateLeagueNameLabel();
         }
+
         private void JoinLeagueButton_Click(object sender, EventArgs e)
         {
             // Prompt the user for the league name they want to join using the LeagueBoard
@@ -237,11 +207,7 @@ namespace NFLPicks2
                     // The league joining logic is now in LeagueForm
                 }
             }
-        }
-        private League FindLeagueByName(User user, string leagueName)
-        {
-            // Helper method to find a league by name within a user's leagues
-            return user.Leagues.FirstOrDefault(league => league.LeagueName == leagueName);
+            HandleLeagueButtonClick(LeagueButton1);
         }
         private void LeaveLeagueButton_Click(object sender, EventArgs e)
         {
@@ -292,14 +258,37 @@ namespace NFLPicks2
         #endregion
 
         #region Game Buttons
-        private Button GetGameButton(int buttonNumber)
+        private void WeeksComboBox_SelectedIndexChanged(object sender, EventArgs e)
         {
-            // Assuming you have a List<Button> to store all the Game buttons
-            return gameButtons.FirstOrDefault(button => button.Tag?.ToString() == buttonNumber.ToString());
+            // Load the matchup buttons for the selected week
+            LoadMatchupButtons(GetSelectedWeekNumber());
+        }
+        private void PopulateWeeksComboBox()
+        {
+            // Set the DataSource property to your list of weeks
+            WeeksComboBox.DataSource = Weeks.GetAllWeeks();
+
+            // Set the DisplayMember to the property you want to display in the combo box
+            WeeksComboBox.DisplayMember = "WeekNumber";
+        }
+        private int GetSelectedWeekNumber()
+        {
+            // Check if any item is selected
+            if (WeeksComboBox.SelectedItem != null)
+            {
+                // Assuming your dropdown is bound to a list of Weeks
+                if (WeeksComboBox.SelectedItem is Weeks selectedWeek)
+                {
+                    return selectedWeek.WeekNumber;
+                }
+            }
+
+            // If no item is selected or the cast fails, return a default value (e.g., week 1)
+            return 1;
         }
         private void InitializeGameButtons()
         {
-            int buttonNumber = 1; // Start with 1 or adjust as needed
+            int buttonNumber = 1;
 
             foreach (var button in gameButtons)
             {
@@ -309,7 +298,25 @@ namespace NFLPicks2
                 buttonNumber++;
             }
         }
+        private void LoadMatchupButtons(int weekNumber)
+        {
+            // Get the matchups for the specified week
+            Weeks currentWeek = Weeks.GetWeekByNumber(weekNumber);
 
+            if (currentWeek != null)
+            {
+                // Load team names onto the Game buttons
+                for (int i = 0; i < gameButtons.Count; i+=2)
+                {
+                    Button teamButtonA = gameButtons[i];
+                    Button teamButtonB = gameButtons[i+1];
+
+                    // Set the text of the buttons to the team names
+                    teamButtonA.Text = currentWeek.Matchups[i/2].TeamA;
+                    teamButtonB.Text = currentWeek.Matchups[i/2].TeamB;
+                }
+            }
+        }
         private void GameButton_Click(object sender, EventArgs e)
         {
             // This event handler will be triggered when any game button is clicked
@@ -317,35 +324,18 @@ namespace NFLPicks2
             if (sender is Button clickedButton)
             {
                 int buttonNumber = (int)clickedButton.Tag;
-                // Perform actions based on the clicked button (buttonNumber)
-                // ...
+
+                // Assuming buttonNumber corresponds to a matchup number
+                int matchupNumber = (buttonNumber + 1) / 2;  // Convert buttonNumber to matchupNumber
+
+                // Get the selected team from the user
+                string selectedTeam = gameButtons[buttonNumber-1].Text;
+
+                // Save the selected team for the specific matchup in the current week
+                winnerSelection.SelectTeam( GetSelectedWeekNumber() ,matchupNumber, selectedTeam);
+
             }
         }
-
-        private void LoadMatchupButtons(int weekNumber)
-        {
-            // Get the matchups for the specified week
-            Weeks currentWeek = GetWeekByNumber(weekNumber);
-
-            if (currentWeek != null)
-            {
-                List<Matchup> matchups = currentWeek.Matchups;
-
-                // Load team names onto the Game buttons
-                for (int i = 0; i < matchups.Count; i++)
-                {
-                    Button teamButtonA = GetGameButton(i * 2 + 1); // Assumes buttons are numbered 1, 3, 5, ...
-                    Button teamButtonB = GetGameButton(i * 2 + 2); // Assumes buttons are numbered 2, 4, 6, ...
-
-                    // Set the text of the buttons to the team names
-                    teamButtonA.Text = matchups[i].TeamA;
-                    teamButtonB.Text = matchups[i].TeamB;
-                }
-            }
-        }
-
         #endregion
-
-
     }
 }

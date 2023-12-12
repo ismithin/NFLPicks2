@@ -28,6 +28,7 @@
         /// </summary>
         private void InitializeComponent()
         {
+            this.components = new System.ComponentModel.Container();
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(Dashboard));
             this.LeagueButton1 = new System.Windows.Forms.Button();
             this.GameButton1 = new System.Windows.Forms.Button();
@@ -67,7 +68,12 @@
             this.JoinLeagueButton = new System.Windows.Forms.Button();
             this.CreateLeagueButton = new System.Windows.Forms.Button();
             this.WeeksComboBox = new System.Windows.Forms.ComboBox();
+            this.Score = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.userBindingSource = new System.Windows.Forms.BindingSource(this.components);
+            this.leagueBindingSource = new System.Windows.Forms.BindingSource(this.components);
             ((System.ComponentModel.ISupportInitialize)(this.LeagueStandingsGrid1)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.userBindingSource)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.leagueBindingSource)).BeginInit();
             this.SuspendLayout();
             // 
             // LeagueButton1
@@ -350,7 +356,11 @@
             // 
             // LeagueStandingsGrid1
             // 
+            this.LeagueStandingsGrid1.AutoGenerateColumns = false;
             this.LeagueStandingsGrid1.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            this.LeagueStandingsGrid1.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
+            this.Score});
+            this.LeagueStandingsGrid1.DataSource = this.leagueBindingSource;
             this.LeagueStandingsGrid1.Location = new System.Drawing.Point(328, 34);
             this.LeagueStandingsGrid1.Name = "LeagueStandingsGrid1";
             this.LeagueStandingsGrid1.Size = new System.Drawing.Size(295, 365);
@@ -392,27 +402,29 @@
             // LeaveLeagueButton
             // 
             this.LeaveLeagueButton.BackColor = System.Drawing.Color.LightCoral;
-            this.LeaveLeagueButton.Location = new System.Drawing.Point(629, 231);
+            this.LeaveLeagueButton.Location = new System.Drawing.Point(629, 194);
             this.LeaveLeagueButton.Name = "LeaveLeagueButton";
             this.LeaveLeagueButton.Size = new System.Drawing.Size(141, 81);
             this.LeaveLeagueButton.TabIndex = 39;
             this.LeaveLeagueButton.Text = "Leave League";
             this.LeaveLeagueButton.UseVisualStyleBackColor = false;
+            this.LeaveLeagueButton.Click += new System.EventHandler(this.LeaveLeagueButton_Click);
             // 
             // JoinLeagueButton
             // 
             this.JoinLeagueButton.BackColor = System.Drawing.Color.LightGreen;
-            this.JoinLeagueButton.Location = new System.Drawing.Point(629, 144);
+            this.JoinLeagueButton.Location = new System.Drawing.Point(629, 115);
             this.JoinLeagueButton.Name = "JoinLeagueButton";
             this.JoinLeagueButton.Size = new System.Drawing.Size(141, 81);
             this.JoinLeagueButton.TabIndex = 40;
             this.JoinLeagueButton.Text = "Join League";
             this.JoinLeagueButton.UseVisualStyleBackColor = false;
+            this.JoinLeagueButton.Click += new System.EventHandler(this.JoinLeagueButton_Click);
             // 
             // CreateLeagueButton
             // 
             this.CreateLeagueButton.BackColor = System.Drawing.Color.DarkGreen;
-            this.CreateLeagueButton.Location = new System.Drawing.Point(629, 57);
+            this.CreateLeagueButton.Location = new System.Drawing.Point(629, 34);
             this.CreateLeagueButton.Name = "CreateLeagueButton";
             this.CreateLeagueButton.Size = new System.Drawing.Size(141, 81);
             this.CreateLeagueButton.TabIndex = 41;
@@ -427,6 +439,19 @@
             this.WeeksComboBox.Name = "WeeksComboBox";
             this.WeeksComboBox.Size = new System.Drawing.Size(156, 21);
             this.WeeksComboBox.TabIndex = 42;
+            // 
+            // Score
+            // 
+            this.Score.HeaderText = "Score";
+            this.Score.Name = "Score";
+            // 
+            // userBindingSource
+            // 
+            this.userBindingSource.DataSource = typeof(NFLPicks2.User);
+            // 
+            // leagueBindingSource
+            // 
+            this.leagueBindingSource.DataSource = typeof(League);
             // 
             // Dashboard
             // 
@@ -476,6 +501,8 @@
             this.Text = "NFLPicks";
             this.Load += new System.EventHandler(this.Dashboard_Load);
             ((System.ComponentModel.ISupportInitialize)(this.LeagueStandingsGrid1)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.userBindingSource)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.leagueBindingSource)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -521,6 +548,9 @@
         private System.Windows.Forms.Button JoinLeagueButton;
         private System.Windows.Forms.Button CreateLeagueButton;
         private System.Windows.Forms.ComboBox WeeksComboBox;
+        private System.Windows.Forms.DataGridViewTextBoxColumn Score;
+        private System.Windows.Forms.BindingSource leagueBindingSource;
+        private System.Windows.Forms.BindingSource userBindingSource;
     }
 }
 

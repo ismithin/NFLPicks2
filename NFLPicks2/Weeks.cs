@@ -8,19 +8,24 @@ namespace NFLPicks2
         public int WeekNumber { get; set; }
         public List<Matchup> Matchups { get; private set; } = new List<Matchup>();
 
-        // Assuming you have a list to store all the weeks
+        // List to store all the weeks
         private static List<Weeks> allWeeks = new List<Weeks>();
 
         public Weeks(int weekNumber)
         {
             WeekNumber = weekNumber;
-            AddMatchup(new Matchup("Team1A", "Team1B"));
-            AddMatchup(new Matchup("Team2A", "Team2B"));
+            // No need to add preset matchups here
+            allWeeks.Add(this);
         }
 
         public void AddMatchup(Matchup matchup)
         {
             Matchups.Add(matchup);
+        }
+
+        public static List<Weeks> GetAllWeeks()
+        {
+            return allWeeks;
         }
 
         public static Weeks GetWeekByNumber(int weekNumber)
@@ -29,3 +34,4 @@ namespace NFLPicks2
         }
     }
 }
+

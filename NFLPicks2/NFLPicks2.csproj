@@ -60,6 +60,7 @@
     <Compile Include="LeagueBoard.Designer.cs">
       <DependentUpon>LeagueBoard.cs</DependentUpon>
     </Compile>
+    <Compile Include="LeagueManager.cs" />
     <Compile Include="LeagueStandings.cs" />
     <Compile Include="LoginBoard.cs">
       <SubType>Form</SubType>
@@ -92,6 +93,9 @@
       <AutoGen>True</AutoGen>
       <DependentUpon>Resources.resx</DependentUpon>
     </Compile>
+    <None Include="Properties\DataSources\League.datasource" />
+    <None Include="Properties\DataSources\LeagueStandings.datasource" />
+    <None Include="Properties\DataSources\User.datasource" />
     <None Include="Properties\Settings.settings">
       <Generator>SettingsSingleFileGenerator</Generator>
       <LastGenOutput>Settings.Designer.cs</LastGenOutput>

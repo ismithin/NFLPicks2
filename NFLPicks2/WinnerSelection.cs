@@ -8,27 +8,26 @@ namespace NFLPicks2
 {
     public class WinnerSelection
     {
-        public Dictionary<int, string> MatchupSelections { get; } = new Dictionary<int, string>();
+        public Dictionary<int, Dictionary<int, string>> WeekMatchupSelections { get; } = new Dictionary<int, Dictionary<int, string>>();
 
-        public void SelectTeam(int matchupNumber, string team)
+        public void SelectTeam(int weekNumber, int matchupNumber, string team)
         {
-            // Check if the matchup is already in the dictionary
-            if (MatchupSelections.ContainsKey(matchupNumber))
+            if (!WeekMatchupSelections.ContainsKey(weekNumber))
             {
-                // If it is, update the selected team
-                MatchupSelections[matchupNumber] = team;
+                WeekMatchupSelections[weekNumber] = new Dictionary<int, string>();
             }
-            else
-            {
-                // If not, add the matchup and selected team
-                MatchupSelections.Add(matchupNumber, team);
-            }
+
+            WeekMatchupSelections[weekNumber][matchupNumber] = team;
         }
-
-        public string GetSelectedTeam(int matchupNumber)
+        public string GetSelectedTeam(int weekNumber, int matchupNumber)
         {
-            // Get the selected team for a specific matchup
-            return MatchupSelections.ContainsKey(matchupNumber) ? MatchupSelections[matchupNumber] : null;
+            if (WeekMatchupSelections.TryGetValue(weekNumber, out var weekSelections) &&
+                weekSelections.TryGetValue(matchupNumber, out var selectedTeam))
+            {
+                return selectedTeam;
+            }
+
+            return null;
         }
     }
 }

@@ -13,7 +13,7 @@ namespace NFLPicks2
     public partial class LeagueBoard : Form
     {
         public string LeagueName { get; private set; }
-        User currentUser;
+        private readonly User currentUser;
 
         public LeagueBoard(string instruction, User user)
         {
@@ -21,17 +21,30 @@ namespace NFLPicks2
             currentUser = user;
             InstructionLabel.Text = instruction;
         }
+
         private void LeagueBoardButton1_Click(object sender, EventArgs e)
         {
-            // Set the LeagueName property and close the form
             // Set the LeagueName property
             LeagueName = LeagueNameTextBox.Text;
 
-            // Join the league before closing the form
-            currentUser.JoinLeague(new League(LeagueName));
+            if (LeagueManager.DoesLeagueExist(LeagueName))
+            {
+                // League exists, join the league before closing the form
+                currentUser.JoinLeague(new League(LeagueName));
+            }
+            else
+            {
+                // League doesn't exist, create it and then join
+                League newLeague = new League(LeagueName);
+                currentUser.JoinLeague(newLeague);
+
+                // Add the league to the existing leagues
+                LeagueManager.AddLeague(LeagueName);
+            }
 
             // Close the form
             Close();
         }
     }
 }
+
