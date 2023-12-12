@@ -106,8 +106,8 @@ namespace NFLPicks2
             // and perform the necessary actions.
             currentLeague = currentUser.Leagues.FirstOrDefault(league => league.LeagueName == button.Text);
             UpdateLeagueNameLabel();
-            ResetButtonColors();
             UpdateLeagueButtons();
+            ResetButtonColors();
         }
         private void UpdateLeagueButtons()
         {
@@ -261,7 +261,6 @@ namespace NFLPicks2
         {
             // Load the matchup buttons for the selected week
             LoadMatchupButtons(GetSelectedWeekNumber());
-            ResetButtonColors();
         }
         private void PopulateWeeksComboBox()
         {
