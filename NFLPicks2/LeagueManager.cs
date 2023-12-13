@@ -10,7 +10,6 @@ namespace NFLPicks2
     {
         // Static list to store existing league names
         public static List<string> LeagueExists { get; private set; } = new List<string>();
-
         // Method to add a league to the existing leagues
         public static void AddLeague(string leagueName)
         {
@@ -19,7 +18,6 @@ namespace NFLPicks2
                 LeagueExists.Add(leagueName);
             }
         }
-
         // Method to check if a league exists
         public static bool DoesLeagueExist(string leagueName)
         {

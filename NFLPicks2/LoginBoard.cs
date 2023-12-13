@@ -12,17 +12,14 @@ namespace NFLPicks2
 {
     public partial class LoginBoard : Form
     {
-        private User loggedInUser;
         public LoginBoard()
         {
             InitializeComponent();
         }
-
         private void LoginButton1_Click(object sender, EventArgs e)
         {
             string enteredUsername = usernameTextBox.Text;
             string enteredPassword = passwordTextBox.Text;
-
             // Perform basic validation, replace with your actual authentication logic
             if (string.IsNullOrEmpty(enteredUsername))
             {
@@ -36,7 +33,6 @@ namespace NFLPicks2
             {
                 // Try to log in the user
                 User loggedInUser = UserManager.Instance.AddUser(enteredUsername, enteredPassword, isLogin: true);
-
                 if (loggedInUser != null)
                 {
                     // If login is successful, show the dashboard
@@ -45,12 +41,6 @@ namespace NFLPicks2
                     this.Hide(); // Hide the login form
                 }
             }
-        }
-
-        private bool IsValidUser(string username, string password)
-        {
-            List<User> allUsers = UserManager.Instance.GetUsers();
-            return allUsers.Any(user => user.Username == username && user.Password == password);
         }
     }
 }

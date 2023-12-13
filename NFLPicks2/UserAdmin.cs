@@ -19,7 +19,6 @@ namespace NFLPicks2
                 league.AddMember(user);
             }
         }
-
         public void AddMemberToLeague(int numberOfUsers, League league)
         {
             for (int i = 0; i < numberOfUsers; i++)
@@ -36,7 +35,6 @@ namespace NFLPicks2
 
             return new User(dummyUsername, dummyPassword);
         }
-
         public void RemoveMemberFromLeague(User user, League league)
         {
             if (league != null)
@@ -44,7 +42,6 @@ namespace NFLPicks2
                 league.RemoveMember(user);
             }
         }
-
         public void OverwriteScoreInLeague(User user, League league, int newScore)
         {
             if (league != null)
@@ -53,5 +50,4 @@ namespace NFLPicks2
             }
         }
     }
-
 }

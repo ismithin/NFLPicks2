@@ -16,7 +16,6 @@ namespace NFLPicks2
         private League currentLeague; // Add a field to store the current league
         private List<Button> leagueButtons; // Maintain a list of league buttons
         private List<Button> gameButtons; // Add this list to store Game buttons
-
         public Dashboard(User user) 
         {
             InitializeComponent();
@@ -67,7 +66,6 @@ namespace NFLPicks2
             LeagueNameLabel2.Text = currentLeague?.LeagueName ?? "League Name";
         }
         #endregion
-
         #region League Buttons
         private void LeagueButton1_Click(object sender, EventArgs e)
         {
