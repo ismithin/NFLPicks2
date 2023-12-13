@@ -48,7 +48,6 @@ namespace NFLPicks2
         {
             lions, bears, vikings, packers, cowboys, eagles, commanders, giants, buccaneers, falcons, panthers, saints, rams, seahawks, cardinals, niners, chiefs, chargers, broncos, raiders, patriots, jets, dolphins, bills, steelers, ravens, bengals, browns, texans, colts, titans, jaguars
         };
-
         /// <summary>
         /// The main entry point for the application.
         /// </summary>
@@ -59,7 +58,6 @@ namespace NFLPicks2
             for (int weekNumber = 1; weekNumber <= 18; weekNumber++)
             {
                 Weeks week = new Weeks(weekNumber);
-
                 // Shuffle string to create random matchups
                 List<string> shuffledstring = new List<string>(allstring);
                 shuffledstring.Shuffle(); // Implement a shuffle extension method
@@ -70,9 +68,7 @@ namespace NFLPicks2
                     Matchup matchup = new Matchup(shuffledstring[i], shuffledstring[i + 1]);
                     week.AddMatchup(matchup);
                 }
-
             }
-
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);
             // Start with the login form
@@ -81,11 +77,9 @@ namespace NFLPicks2
         }
     }
     #region Shuffle 
-    // Extension method to shuffle a list
     static class ListExtensions
     {
         private static Random random = new Random();
-
         public static void Shuffle<T>(this IList<T> list)
         {
             int n = list.Count;

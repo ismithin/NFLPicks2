@@ -8,7 +8,7 @@ namespace NFLPicks2
 {
     public class WinnerSelection
     {
-        public Dictionary<int, Dictionary<int, string>> WeekMatchupSelections { get; } = new Dictionary<int, Dictionary<int, string>>();
+        private Dictionary<int, Dictionary<int, string>> WeekMatchupSelections { get; } = new Dictionary<int, Dictionary<int, string>>();
 
         public void SelectTeam(int weekNumber, int matchupNumber, string team)
         {

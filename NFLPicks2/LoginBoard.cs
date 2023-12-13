@@ -32,21 +32,18 @@ namespace NFLPicks2
             {
                 MessageBox.Show("Please enter a password.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
-            else if (IsValidUser(enteredUsername, enteredPassword))
-            {
-                // If the user is valid, show the dashboard
-                loggedInUser = UserManager.Instance.GetUserByUsername(enteredUsername);
-                Dashboard mainDashboard = new Dashboard(loggedInUser);
-                mainDashboard.Show();
-                this.Hide(); // Hide the login form
-            }
             else
             {
-                // If user is not valid (doesn't exist in userlist), add user and show dashboard
-                loggedInUser = UserManager.Instance.AddUser(enteredUsername, enteredPassword);
-                Dashboard mainDashboard = new Dashboard(loggedInUser);
-                mainDashboard.Show();
-                this.Hide(); // Hide the login form
+                // Try to log in the user
+                User loggedInUser = UserManager.Instance.AddUser(enteredUsername, enteredPassword, isLogin: true);
+
+                if (loggedInUser != null)
+                {
+                    // If login is successful, show the dashboard
+                    Dashboard mainDashboard = new Dashboard(loggedInUser);
+                    mainDashboard.Show();
+                    this.Hide(); // Hide the login form
+                }
             }
         }
 

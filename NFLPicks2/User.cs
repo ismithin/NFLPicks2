@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using System.Windows.Forms;
 
-public class User
+public class User : IUser
 {
     // Attributes
     public string Username { get; set; }
@@ -13,22 +13,18 @@ public class User
 
     // Constructors
     public User()
-    {
-        // Default constructor
+    { 
     }
-
     public User(string username, string password)
     {
         Username = username;
         Password = password;
         IsLeagueAdminSet();
     }
-
     public void IsLeagueAdminSet()
     {
         IsLeagueAdmin = false;
     }
-
     public void JoinLeague(League league)
     {
         if (Leagues.Count >= 4)

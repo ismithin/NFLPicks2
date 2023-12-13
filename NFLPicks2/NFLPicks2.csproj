@@ -53,6 +53,7 @@
       <DependentUpon>Dashboard.cs</DependentUpon>
     </Compile>
     <Compile Include="Games.cs" />
+    <Compile Include="IUser.cs" />
     <Compile Include="League.cs" />
     <Compile Include="LeagueBoard.cs">
       <SubType>Form</SubType>

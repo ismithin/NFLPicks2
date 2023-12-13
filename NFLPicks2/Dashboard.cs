@@ -38,18 +38,13 @@ namespace NFLPicks2
             };
             // Initialize game buttons
             InitializeGameButtons();
-
             // Load user's leagues into buttons
             SetupLeagueButtons();
-
             // Attach the event handler for the SelectedIndexChanged event of your dropdown
             WeeksComboBox.SelectedIndexChanged += WeeksComboBox_SelectedIndexChanged;
-
             PopulateWeeksComboBox();
-
             LoadMatchupButtons(GetSelectedWeekNumber());
         }
-
         private void Dashboard_Load(object sender, EventArgs e)
         {
 
@@ -62,7 +57,6 @@ namespace NFLPicks2
             LoginBoard loginForm = new LoginBoard();
             loginForm.Show();
         }
-
         #region Update Objects
         private void UpdateUsernameLabel(User currentUser)
         {

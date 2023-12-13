@@ -44,7 +44,6 @@ namespace NFLPicks2
                 member.Score = newScore;
             }
         }
-
         public List<LeagueMember> GetMembers()
         {
             return members.ToList();
