@@ -312,6 +312,11 @@ namespace NFLPicks2
         {
             // This event handler will be triggered when any game button is clicked
             // You can use 'sender' to identify which button was clicked
+            if (currentLeague == null)
+            {
+                MessageBox.Show("You are not currently in a league.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                return;
+            }
             if (sender is Button clickedButton)
             {
                 int buttonNumber = (int)clickedButton.Tag;
