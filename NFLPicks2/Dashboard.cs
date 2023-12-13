@@ -12,7 +12,7 @@ namespace NFLPicks2
 {
     public partial class Dashboard : Form
     {
-        private readonly User currentUser;
+        private User currentUser;
         private League currentLeague; // Add a field to store the current league
         private List<Button> leagueButtons; // Maintain a list of league buttons
         private List<Button> gameButtons; // Add this list to store Game buttons
